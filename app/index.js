@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import render from './render.js';
 import generator from './generator.js';
 
@@ -20,3 +22,4 @@ const virtualDomTree = generator('h1', undefined, 'title', [
 ]);
 
 render(target, virtualDomTree);
+console.log(_);

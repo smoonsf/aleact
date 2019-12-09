@@ -7,10 +7,17 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "dev": "concurrently \"webpack app/index.js -o static/build/app.js --mode development --watch --display-error-details\" \"node server.js\"",
+    "build": "webpack app/index.js -o static/build/app.js --mode production",
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
     "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
