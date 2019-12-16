@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "concurrently \"webpack app/index.js -o static/build/app.js --mode development --watch --display-error-details\" \"node server.js\"",
-    "build": "webpack app/index.js -o static/build/app.js --mode production",
+    "dev": "concurrently \"webpack src/index.js -o static/build/app.js --mode development --watch --display-error-details\" \"node server.js\"",
+    "build": "webpack src/index.js -o static/build/app.js --mode production",
     "start": "node server.js"
   },
   "dependencies": {
