@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const parser = (virtualDom) => {
+const parser = (virtualDom, rerender) => {
     const {
         elementType,
         attrs = [],
@@ -12,10 +12,10 @@ const parser = (virtualDom) => {
     const dom = document.createElement(elementType, {});
     dom.state = state;
     dom.setState = (newState) => {
-        dom.state = {
-            ...dom.state,
-            ...newState
-        };
+        _.each(newState, (value, key) => {
+            state[key] = value;
+        });
+        rerender();
     }
     
     for (const [attrName, attrValue] of attrs) {
@@ -27,7 +27,7 @@ const parser = (virtualDom) => {
     }
 
     for (const child of children) {
-        const childDom = typeof child === 'string' ? document.createTextNode(_.template(child)(state)) : parser(child);
+        const childDom = typeof child === 'string' ? document.createTextNode(_.template(child)(state)) : parser(child, rerender);
         
         dom.appendChild(childDom);
     }
